@@ -260,9 +260,19 @@ Full-Width Styles
 
 .inner {
   position: relative;
-  max-width: 640px;
+  max-width: 960px;
   padding: 20px 10px;
   margin: 0 auto;
+}
+
+.left {
+    float: left;
+    width: 30%;
+}
+
+.right {
+    float: left;
+    width: 69%;
 }
 
 #forkme_banner {
