@@ -10,7 +10,7 @@ Ruby Invoicing Framework
 * [API Docs](http://rubydoc.info/github/ept/invoicing/frames/)
 * [Code](http://github.com/ept/invoicing/)
 
-# Description
+## Description
 
 This is a framework for generating and displaying invoices (ideal for
 commercial Rails apps). It allows for flexible business logic; provides tools
@@ -27,16 +27,16 @@ to using Invoicing, and check the
 If you're interested in contributing to the invoicing gem itself, please see the file
 [HACKING.md](http://github.com/ept/invoicing/blob/master/HACKING.md).
 
-# Features
+## Features
 
 * TODO
 
-# Requirements
+## Requirements
 
 * ActiveRecord >= 2.1
 * Only MySQL and PostgreSQL databases are currently supported
 
-# Getting Started
+## Getting Started
 
 Add the following to your Gemfile:
 
@@ -53,13 +53,13 @@ Run the generated migrations :
 
     bundle exec rake db:migrate
 
-# Status
+## Status
 
 So far, the Ruby Invoicing Framework has been tested with ActiveRecord 2.2.2,
 MySQL 5.0.67 and PostgreSQL 8.3.5. We will be testing it across a wider
 variety of versions soon.
 
-# Credits
+## Credits
 
 The Ruby invoicing framework originated as part of the website
 [Bid for Wine](http://www.bidforwine.co.uk), developed by Patrick Dietrich,
@@ -67,9 +67,9 @@ Conrad Irwin, Michael Arnold and Martin Kleppmann for Ept Computing Ltd.
 It was extracted from the Bid for Wine codebase and substantially extended
 by Martin Kleppmann. 
 
-# LICENSE
+## License
 
-Copyright (c) 2009 Martin Kleppmann, Ept Computing Limited.
+Copyright (c) 2013 Codemancers, Martin Kleppmann, Ept Computing Limited.
 
 This gem is made publicly available under the terms of the MIT license.
 See LICENSE and/or COPYING for details.
