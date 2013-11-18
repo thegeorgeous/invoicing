@@ -1,26 +1,24 @@
 # encoding: utf-8
 
 require_relative 'test_helper'
+require_relative 'support/ledger_item_helper'
 
 class RenderHTMLTest < MiniTest::Unit::TestCase
   def reference_output(filename)
     IO.readlines(File.join(File.dirname(__FILE__), 'ref-output', filename)).join
   end
 
-  # TODO: Enable this test
-  # def test_render_default_html_invoice
-  #   assert_equal reference_output('invoice1.html'), MyInvoice.find(1).render_html
-  # end
+  def test_render_default_html_invoice
+    assert_equal reference_output('invoice1.html'), MyInvoice.find(1).render_html
+  end
 
-  # TODO: Enable this test
-  # def test_render_self_billed_html_invoice
-  #   assert_equal reference_output('invoice2.html'), MyInvoice.find(2).render_html
-  # end
+  def test_render_self_billed_html_invoice
+    assert_equal reference_output('invoice2.html'), MyInvoice.find(2).render_html
+  end
 
-  # TODO: Enable this test
-  # def test_render_html_credit_note
-  #   assert_equal reference_output('creditnote3.html'), MyCreditNote.find(3).render_html
-  # end
+  def test_render_html_credit_note
+    assert_equal reference_output('creditnote3.html'), MyCreditNote.find(3).render_html
+  end
 
   def test_render_with_custom_fragments
     expected = reference_output('invoice1.html').split("\n")[0..60]
