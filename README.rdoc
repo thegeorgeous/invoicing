@@ -35,9 +35,22 @@ If you're interested in contributing to the invoicing gem itself, please see the
 * ActiveRecord >= 2.1
 * Only MySQL and PostgreSQL databases are currently supported
 
-== INSTALL
+== Getting Started
 
-sudo gem install invoicing
+Add the following to your Gemfile:
+
+    gem "invoicing"
+
+And run `bundle install` to install the gem.
+
+Run the following from root of your Rails project to setup migrations and models
+for invoicing to work :
+
+    bundle exec rails g invoicing
+
+Run the generated migrations :
+
+    bundle exec rake db:migrate
 
 == STATUS
 
