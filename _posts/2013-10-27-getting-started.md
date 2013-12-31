@@ -16,7 +16,17 @@ mostly just works and remains extensible should you choose to extend it.
 {% highlight ruby %}
 gem 'invoicing'
 {% endhighlight %}
-
-
 After that you can either use generators to create necessary tables and models
 or you can do so manually.
+
+You can run generator using command:
+
+{% highlight shell %}
+~> bundle exec rails generate invoicing
+   create  db/migrate/20131231043450_invoicing_tax_rates.rb
+   create  app/models/invoicing_tax_rate.rb
+   create  db/migrate/20131231043451_invoicing_ledger_items.rb
+   create  app/models/invoicing_ledger_item.rb
+   create  db/migrate/20131231043452_invoicing_line_items.rb
+   create  app/models/invoicing_line_item.rb
+{% endhighlight %}
