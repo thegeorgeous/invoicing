@@ -35,9 +35,9 @@ class InvoicingGeneratorTest < Rails::Generators::TestCase
 
       Dir.chdir(TMP_PATH) do
         # assert that models are created
-        assert_file "db/migrate/1_invoicing_ledger_items.rb"
-        assert_file "db/migrate/1_invoicing_line_items.rb"
-        assert_file "db/migrate/1_invoicing_tax_rates.rb"
+        assert_file "db/migrate/1_create_invoicing_ledger_items.rb"
+        assert_file "db/migrate/1_create_invoicing_line_items.rb"
+        assert_file "db/migrate/1_create_invoicing_tax_rates.rb"
       end
     end
   end
