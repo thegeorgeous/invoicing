@@ -6,7 +6,7 @@ module Invoicing
       source_root File.expand_path("../templates", __FILE__)
 
       def copy_migration_file
-        migration_template "migration.rb", "db/migrate/invoicing_tax_rates.rb"
+        migration_template "migration.rb", "db/migrate/create_invoicing_tax_rates.rb"
       end
 
       def copy_model

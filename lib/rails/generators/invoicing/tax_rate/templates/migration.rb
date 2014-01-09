@@ -1,4 +1,4 @@
-class CreateInvoicingTaxable < ActiveRecord::Migration
+class CreateInvoicingTaxRates < ActiveRecord::Migration
   def change
     create_table :invoicing_tax_rates do |t|
       t.string   :description
