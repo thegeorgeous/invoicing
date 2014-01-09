@@ -21,7 +21,7 @@ or you can do so manually.
 
 You can run generator using command:
 
-{% highlight shell %}
+{% highlight bash %}
 ~> bundle exec rails generate invoicing
    create  db/migrate/20131231043450_invoicing_tax_rates.rb
    create  app/models/invoicing_tax_rate.rb
