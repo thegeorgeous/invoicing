@@ -55,8 +55,8 @@ Lets work through a scenario and see how you can generate a simple invoice.
 {% highlight ruby %}
 # assuming that you have models for company, user and products or services
 company = Company.new(name: 'My Company')
-user    = User.new(name: 'Awesome client', email: 'awesome@example.com')
-product = Product.new(name: 'T-Shirts', price: 10)
+user    = User.new(name: 'Awesome Customer', email: 'user@example.com')
+product = Product.new(name: 'T-Shirt', price: 10)
 
 # create an invoice, and add line items to them
 invoice = InvoicingLedgerItem.new(sender: company, recipient: user)
@@ -69,6 +69,39 @@ invoice.save
 # InvoiceMailer.send_invoice(invoice).deliver
 {% endhighlight %}
 
-You can customize the system so that you can specify types of ledger items {
-like invoice, credit note, payment note}, different currencies on ledger items,
-evolving tax rates, statuses on ledger items etc.
+You can customize the system so that you can specify types of ledger items {like
+invoice, credit note, payment note}, different currencies on ledger items,evolving
+tax rates, statuses on ledger items etc.
+
+# Developer Guide - Detailed Documentation
+
+`Invoicing` gem uses `acts-as` style, and provides various functionalities:
+
+1. ledger item, it can be an invoice, a credit note, or a payment note.
+2. line item, which specifies an entry in a ledger item.
+3. tax rates, which can be used to caculate taxes on various items.
+
+Code contains detailed documentation, but there are underlying concepts which
+should be understood first:
+
+1. `acts_as_cached_record`: tables like tax rates, will have very less number of
+   entries. Since there will be very less number of entries, then can be cached
+   and returned from the cache, rather than querying from the database again
+   and again. `acts_as_cached_record` helps in caching records. This module will
+   be deprecated soon.
+
+2. `class_info.rb`: this file is the heart of all the `acts_as` modules. It helps
+   in storing information related to all the instances of a class at class level.
+   It also takes care of inheritance. It defines basic `acts_as` helper, which is
+   inturn used by other modules.
+
+3. `connection_adapter_ext.rb`: It tries to generate specific statements and queries
+   according to database adapter used, which are not inherently supported by AR.
+   This module will also be deprecated soon.
+
+4. `currency_value`: Helpers for effectively storing and formatting monetary values.
+
+5. `find_subclasses`: This module is more or less a hack, which helps in optimizing
+   queries when a hierarchy of classes exist. This module will be deprecated soon.
+
+6. `ledger_item`: This is the heart of 
