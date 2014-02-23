@@ -73,6 +73,78 @@ You can customize the system so that you can specify types of ledger items {like
 invoice, credit note, payment note}, different currencies on ledger items,evolving
 tax rates, statuses on ledger items etc.
 
+# Getting Started
+## Creating a structure
+Genrally, there will be many types of invoices that a company typically sends, or
+receives. This gem heavily depends on STI, so, its better to create an structure
+that works well for different types of invoices, credit notes, and payment notes.
+Its always advised to have a base classes for above said types.
+
+{% highlight ruby %}
+class Invoice < InvoicingLedgerItem
+  acts_as_invoice
+end
+
+class CreditNote < InvoicingLedgerItem
+  acts_as_credit_note
+end
+
+class PaymentNote < InvoicingLedgerItem
+  acts_as_payment
+end
+{% endhighlight %}
+
+Now, you can further sub class them as per your need. Say, you want to send an
+invoice to your client, subclass `Invoice`
+
+{% highlight ruby %}
+class EndUserInvoice < Invoice
+  belongs_to :recipient, class_name: 'User'
+end
+
+class ClientInvoice < Invoice
+  belongs_to :recipient, class_name: 'Client'
+end
+{% endhighlight %}
+
+This way, you can generate different types of invoices and customize them as
+per your need. Based on the context, the type of invoice that gets created
+will differ.
+
+## Creating an invoice
+As mentioned in quick guide, creating invoice is as simple as adding bunch of
+line items to invoice.
+
+{% highlight ruby %}
+invoice = EndUserInvoice.new(sender: company, recipient: user)
+invoice.line_items.build(description: 'Goodies: T-Shirt',
+                         net_amount: 10, tax_amount: 0)
+invoice.line_items.build(description: 'Goodies: Coffee Cup',
+                         net_amount: 20, tax_amount: 1.3)
+invoice.save
+{% endhighlight %}
+
+Some of the important things to note here:
+1. Invoices are immutable. Once created, its not advised to modify them.
+   Created a wrong invoice? Send a credit note if you have charged in
+   excess, or send another invoice if you have charged less.
+2. invoicing gem doesn't add any validations. All the validations are
+   responsibility of your application. For eg: Generating invoice without
+   sender or recipient is perfectly allowed by this gem, although it
+   doesn't make any sense.
+3. Its not necessary to associate line items with goods that are being
+   sold to recipient. As you can see, line items dont care what **item**
+   is being added to invoice, it doesn't care whether a goodie called
+   `T-Shirt` exists in the system or not.
+
+## Sending an invoice
+TBD: Optionally, this gem provides generation of pdf from an invoice.
+Use your favorite action mailer to send this pdf to your client.
+
+## Taxes on Goods
+Taxes have an important theory of evolving over time. This section explains
+how taxes work under the hood in detail.
+
 # Developer Guide - Detailed Documentation
 
 `Invoicing` gem uses `acts-as` style, and provides various functionalities:
