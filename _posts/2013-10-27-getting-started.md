@@ -162,12 +162,28 @@ Some of the important things to note here:
    `T-Shirt` exists in the system or not.
 
 ## Sending an invoice
-TBD: Optionally, this gem provides generation of pdf from an invoice.
-Use your favorite action mailer to send this pdf to your client.
+This gem provides generation of pdf from an invoice. For pdf generation to work,
+you need to include `prawn` gem as dependency. Add it to your Gemfile.
 
-## Taxes on Goods
-Taxes have an important theory of evolving over time. This section explains
-how taxes work under the hood in detail.
+{% highlight ruby %}
+  gem 'prawn'
+{% endhighlight %}
+
+Now, you can generate pdf from invoice like this:
+
+{% highlight ruby %}
+require 'invoicing/ledger_item/pdf_generator'
+
+# generate, and save the invoice
+@invoice = InvoicingLedgerItem.new()
+# ...
+
+pdf_creator = Invoicing::LedgerItem::PdfGenerator.new(@invoice)
+pdf_file = pdf_creator.render Rails.root.join('/path/to/pdf')
+{% endhighlight %}
+
+Now, use your favorite action mailer to send this pdf to your client.
+
 
 # Developer Guide - Detailed Documentation
 
