@@ -10,6 +10,29 @@ and invoice generation when working on your Rails app. It handles many
 currencies out of box, special tax rules and mostly just works and remains
 extensible should you choose to extend it.
 
+What invoicing gem can do for you?
+
+1. Store any number of different types of invoice, credit note and payment
+   record
+2. Represent customer accounts, supplier accounts, and even complicated
+   multi-party billing relationships
+3. Automatically format currency values beautifully
+4. Automatically round currency values to the customary precision for that
+   particular currency, e.g. based on the smallest coin in circulation
+5. Support any number of different currencies simultaneously
+6. Render invoices, account statements etc. into HTML (fully styleable and
+   internationalisable)
+7. Export into the UBL XML format for sharing data with other systems
+8. Provide you with a default Value Added Tax (VAT) implementation, but you
+   can also easily plug in your own tax logic
+9. Dynamically display tax-inclusive or tax-exclusive prices depending on
+   your customer's location and preferences
+10. Deal with tax rates or prices changing over time, and automatically
+    switch to the new rate at the right moment
+11. Efficiently summarise account balances, sales statements etc. under
+    arbitrary conditions (e.g. data from one quarter, or payments due at a
+    particular date)
+
 # <a name="installation"> Installation </a>
 
 `Invoicing` gem works with Rails 3 or Rails 4. You can get started by adding
@@ -125,6 +148,7 @@ invoice.save
 {% endhighlight %}
 
 Some of the important things to note here:
+
 1. Invoices are immutable. Once created, its not advised to modify them.
    Created a wrong invoice? Send a credit note if you have charged in
    excess, or send another invoice if you have charged less.
