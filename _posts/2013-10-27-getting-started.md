@@ -182,7 +182,8 @@ pdf_creator = Invoicing::LedgerItem::PdfGenerator.new(@invoice)
 pdf_file = pdf_creator.render Rails.root.join('/path/to/pdf')
 {% endhighlight %}
 
-Now, use your favorite action mailer to send this pdf to your client.
+Now, use your favorite action mailer to send this pdf to your client. You can see
+a test sample [here](./test.pdf)
 
 
 # Developer Guide - Detailed Documentation
@@ -215,5 +216,3 @@ should be understood first:
 
 5. `find_subclasses`: This module is more or less a hack, which helps in optimizing
    queries when a hierarchy of classes exist. This module will be deprecated soon.
-
-6. `ledger_item`: This is the heart of 
