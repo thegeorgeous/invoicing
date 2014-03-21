@@ -64,7 +64,7 @@ Run migrations and you are good to go.
 ~> bundle exec rake db:migrate
 {% endhighlight %}
 
-# Usage - Quick Guide.
+# <a name="usage"> Usage - Quick Guide </a>
 
 `Invoicing` gem works on the concept of [ledger](http://en.wikipedia.org/wiki/Ledger).
 It assumes that each account has a ledger of items, which contain lots of invoices,
@@ -96,8 +96,8 @@ You can customize the system so that you can specify types of ledger items {like
 invoice, credit note, payment note}, different currencies on ledger items,evolving
 tax rates, statuses on ledger items etc.
 
-# Getting Started
-## Creating a structure
+# <a name="getting-started"> Getting Started </a>
+## <a name="gs-creating-structure"> Creating a structure </a>
 Genrally, there will be many types of invoices that a company typically sends, or
 receives. This gem heavily depends on STI, so, its better to create an structure
 that works well for different types of invoices, credit notes, and payment notes.
@@ -134,7 +134,7 @@ This way, you can generate different types of invoices and customize them as
 per your need. Based on the context, the type of invoice that gets created
 will differ.
 
-## Creating an invoice
+## <a name="gs-creating-invoice"> Creating an invoice </a>
 As mentioned in quick guide, creating invoice is as simple as adding bunch of
 line items to invoice.
 
@@ -161,7 +161,7 @@ Some of the important things to note here:
    is being added to invoice, it doesn't care whether a goodie called
    `T-Shirt` exists in the system or not.
 
-## Sending an invoice
+## <a name="gs-sending-invoice"> Sending an invoice </a>
 This gem provides generation of pdf from an invoice. For pdf generation to work,
 you need to include `prawn` gem as dependency. Add it to your Gemfile.
 
@@ -186,7 +186,7 @@ Now, use your favorite action mailer to send this pdf to your client. You can se
 a test sample [here](./test.pdf)
 
 
-# Developer Guide - Detailed Documentation
+# <a name="developer-guide"> Developer Guide - Detailed documentation </a>
 
 `Invoicing` gem uses `acts-as` style, and provides various functionalities:
 
