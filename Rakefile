@@ -1,3 +1,9 @@
+begin
+  require 'bundler/setup'
+rescue LoadError
+  puts 'You must `gem install bundler` and `bundle install` to run rake tasks'
+end
+
 require 'rubygems'
 require 'rake'
 require 'rake/clean'
@@ -12,3 +18,5 @@ Rake::TestTask.new do |t|
   t.test_files = FileList['test/**/*_test.rb']
   t.warning = false
 end
+
+Bundler::GemHelper.install_tasks
