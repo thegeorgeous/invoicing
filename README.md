@@ -51,7 +51,7 @@ by Martin Kleppmann.
 ## License
 
 Copyright (c) 2009 Martin Kleppmann, Ept Computing Limited.
-Copyright (c) 2013 Codemancers Tech Pvt Ltd
+Copyright (c) 2014 Codemancers Tech Pvt Ltd
 
 This gem is made publicly available under the terms of the MIT license.
 See LICENSE and/or COPYING for details.
