@@ -43,7 +43,7 @@ for more information about how to install and use.
 ## Credits
 
 The Ruby invoicing framework originated as part of the website
-{Bid for Wine}[http://www.bidforwine.co.uk], developed by Patrick Dietrich,
+[Bid for Wine](http://www.bidforwine.co.uk), developed by Patrick Dietrich,
 Conrad Irwin, Michael Arnold and Martin Kleppmann for Ept Computing Ltd.
 It was extracted from the Bid for Wine codebase and substantially extended
 by Martin Kleppmann.
