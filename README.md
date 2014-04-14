@@ -7,8 +7,13 @@
 This is a framework for generating and displaying invoices (ideal for commercial
 Rails apps). It allows for flexible business logic; provides tools for tax handling,
 commission calculation etc. It aims to be both developer-friendly and
-accountant-friendly. Please visit invoicing [page](http://invoicing.codemancers.com/)
-for more information about how to install and use.
+accountant-friendly.
+
+## Documentation
+
+Detailed documentation about `invoicing` gem can be found on:
+
+http://invoicing.codemancers.com/
 
 ## Features
 
