@@ -376,11 +376,12 @@ module Invoicing
       }
 
       scope :sorted, lambda { |column|
+        table = ledger_item_class_info.method(quoted_table_name).to_s
         column = ledger_item_class_info.method(column).to_s
         if column_names.include?(column)
-          order("#{connection.quote_column_name(column)}, #{connection.quote_column_name(primary_key)}")
+          order("#{table}.#{connection.quote_column_name(column)}, #{table}.#{connection.quote_column_name(primary_key)}")
         else
-          order(connection.quote_column_name(primary_key))
+          order("#{table}.#{connection.quote_column_name(primary_key)}")
         end
       }
 
