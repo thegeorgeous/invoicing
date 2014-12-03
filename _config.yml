@@ -4,6 +4,6 @@ description: Ruby Invoicing Framework
 
 permalink: /:year/:month/:day/:title/
 paginate: 10
-pygments: true
+highlighter: true
 
 exclude: ['README.md', 'Gemfile.lock', 'Gemfile', 'Rakefile']
