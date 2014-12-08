@@ -7,13 +7,13 @@ categories: jekyll update
 
 Invoicing saves you from worrying about ugly things like tax, book-keeping
 and invoice generation when working on your Rails app. It handles many
-currencies out of box, special tax rules and mostly just works and remains
+currencies out of the box, special tax rules and mostly just works and remains
 extensible should you choose to extend it.
 
 What invoicing gem can do for you?
 
-1. Store any number of different types of invoice, credit note and payment
-   record
+1. Store any number of different types of invoices, credit notes and payment
+   records
 2. Represent customer accounts, supplier accounts, and even complicated
    multi-party billing relationships
 3. Automatically format currency values beautifully
@@ -35,7 +35,7 @@ What invoicing gem can do for you?
 
 # <a name="installation"> Installation </a>
 
-`Invoicing` gem works with Rails 3 or Rails 4. You can get started by adding
+`Invoicing` gem works with Rails 3 and Rails 4. You can get started by adding
 it to your Gemfile.
 
 {% highlight ruby %}
@@ -68,7 +68,7 @@ Run migrations and you are good to go.
 
 `Invoicing` gem works on the concept of [ledger](http://en.wikipedia.org/wiki/Ledger).
 It assumes that each account has a ledger of items, which contain lots of invoices,
-credit notes and payment notes. For eg: If you are running a company, your company
+credit notes and payment notes. For example: If you are running a company, your company
 will have one ledger which contains entries for invoices that you send to clients,
 end users etc. Each ledger item can have 1 or more line items. All the taxes will
 be applied on inventory which constitute line items.
@@ -76,19 +76,21 @@ be applied on inventory which constitute line items.
 Lets work through a scenario and see how you can generate a simple invoice.
 
 {% highlight ruby %}
-# assuming that you have models for company, user and products or services
+# assuming that you have models for company, user and products
 company = Company.new(name: 'My Company')
 user    = User.new(name: 'Awesome Customer', email: 'user@example.com')
 product = Product.new(name: 'T-Shirt', price: 10)
 
-# create an invoice, and add line items to them
-invoice = InvoicingLedgerItem.new(sender: company, recipient: user)
+# create an invoice and add line items to them
+invoice = InvoicingLedgerItem.new(sender: company,
+	                          recipient: user,
+				  currency: 'usd')
 invoice.line_items.build(description: product.name,
                          net_amount: product.price,
                          tax_amount: 0)
 invoice.save
 
-# have a mailer, which sends invoice to user
+# have a mailer which sends invoice to user
 # InvoiceMailer.send_invoice(invoice).deliver
 {% endhighlight %}
 
@@ -97,11 +99,13 @@ invoice, credit note, payment note}, different currencies on ledger items,evolvi
 tax rates, statuses on ledger items etc.
 
 # <a name="getting-started"> Getting Started </a>
+
 ## <a name="gs-creating-structure"> Creating a structure </a>
-Genrally, there will be many types of invoices that a company typically sends, or
-receives. This gem heavily depends on STI, so, its better to create an structure
+
+Generally, there will be many types of invoices that a company typically sends, or
+receives. This gem heavily depends on STI, so, it's better to create a structure
 that works well for different types of invoices, credit notes, and payment notes.
-Its always advised to have a base classes for above said types.
+It's always advised to have base classes for above said types.
 
 {% highlight ruby %}
 class Invoice < InvoicingLedgerItem
@@ -117,7 +121,7 @@ class PaymentNote < InvoicingLedgerItem
 end
 {% endhighlight %}
 
-Now, you can further sub class them as per your need. Say, you want to send an
+Now, you can further subclass them as per your need. Say, you want to send an
 invoice to your client, subclass `Invoice`
 
 {% highlight ruby %}
@@ -149,24 +153,25 @@ invoice.save
 
 Some of the important things to note here:
 
-1. Invoices are immutable. Once created, its not advised to modify them.
+1. Invoices are immutable. Once created, it's not advised to modify them.
    Created a wrong invoice? Send a credit note if you have charged in
    excess, or send another invoice if you have charged less.
 2. invoicing gem doesn't add any validations. All the validations are
-   responsibility of your application. For eg: Generating invoice without
+   responsibility of your application. For example: Generating invoice without
    sender or recipient is perfectly allowed by this gem, although it
    doesn't make any sense.
-3. Its not necessary to associate line items with goods that are being
-   sold to recipient. As you can see, line items dont care what **item**
+3. It's not necessary to associate line items with goods that are being
+   sold to recipient. As you can see, line items don't care what **item**
    is being added to invoice, it doesn't care whether a goodie called
    `T-Shirt` exists in the system or not.
 
 ## <a name="gs-sending-invoice"> Sending an invoice </a>
 This gem provides generation of pdf from an invoice. For pdf generation to work,
-you need to include `prawn` gem as dependency. Add it to your Gemfile.
+you need to include `prawn` and `prawn-table` gems as dependencies. Add them to your Gemfile.
 
 {% highlight ruby %}
-  gem 'prawn'
+gem 'prawn'
+gem 'prawn-table'
 {% endhighlight %}
 
 Now, you can generate pdf from invoice like this:
@@ -197,8 +202,8 @@ a test sample [here](./test.pdf)
 Code contains detailed documentation, but there are underlying concepts which
 should be understood first:
 
-1. `acts_as_cached_record`: tables like tax rates, will have very less number of
-   entries. Since there will be very less number of entries, then can be cached
+1. `acts_as_cached_record`: tables like tax rates, will have much lower number of
+   entries. Since there will be less entries, they can be cached
    and returned from the cache, rather than querying from the database again
    and again. `acts_as_cached_record` helps in caching records. This module will
    be deprecated soon.
@@ -206,7 +211,7 @@ should be understood first:
 2. `class_info.rb`: this file is the heart of all the `acts_as` modules. It helps
    in storing information related to all the instances of a class at class level.
    It also takes care of inheritance. It defines basic `acts_as` helper, which is
-   inturn used by other modules.
+   in turn used by other modules.
 
 3. `connection_adapter_ext.rb`: It tries to generate specific statements and queries
    according to database adapter used, which are not inherently supported by AR.
