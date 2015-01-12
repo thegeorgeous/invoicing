@@ -61,7 +61,7 @@ def connect_to_testing_database
 
   # puts "Connecting to #{database_used_for_testing} with config #{db_config.inspect}" +
   #   (db_config_from_file ? " from #{TEST_DB_CONFIG_FILE}" : "")
-  ActiveRecord::Base.establish_connection 'sqlite3:///:memory:'
+  ActiveRecord::Base.establish_connection adapter: :sqlite3, database: ':memory:'
 end
 
 connect_to_testing_database
