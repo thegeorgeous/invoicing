@@ -250,7 +250,7 @@ module Invoicing
         @taxed_or_untaxed[attribute] = :untaxed
         @taxed_attributes[attribute] = nil
       elsif attribute =~ /^(#{attr_regex})_taxed$/
-        @attributes[attribute] = value
+        @attributes.write_cast_value(attribute, value)
         @taxed_or_untaxed[$1] = :taxed
         @taxed_attributes[$1] = value
       end
