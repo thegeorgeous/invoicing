@@ -9,7 +9,6 @@ require "active_record"
 require "active_support"
 require "active_support/dependencies"
 require "database_cleaner"
-require "flexmock/test_unit"
 require "fileutils"
 
 require_relative "../lib/invoicing"
