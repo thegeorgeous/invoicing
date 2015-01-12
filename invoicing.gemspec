@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.version     = Invoicing::VERSION
   s.authors     = ["Martin Kleppmann"]
   s.email       = ["@martinkl"]
-  s.homepage    = "http://ept.github.com/invoicing"
+  s.homepage    = "http://invoicing.codemancers.com/"
   s.summary     = "Ruby Invoicing Framework"
   s.description = <<-DESC
 This is a framework for generating and displaying invoices (ideal for commercial
