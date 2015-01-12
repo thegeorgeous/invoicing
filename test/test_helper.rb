@@ -11,7 +11,6 @@ require "active_support/dependencies"
 require "database_cleaner"
 require "flexmock/test_unit"
 require "fileutils"
-require "pry-rails"
 
 require_relative "../lib/invoicing"
 
