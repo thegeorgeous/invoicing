@@ -15,10 +15,6 @@ class CachedRecordTest < MiniTest::Unit::TestCase
   class CachedRecordMockDatabase < ActiveRecord::Base
     self.table_name = "cached_records"
     acts_as_cached_record
-
-    def self.connection
-      @connection_mock ||= FlexMock.new("connection")
-    end
   end
 
   # Rebuild cache after doing a transaction rollback

@@ -387,7 +387,8 @@ module Invoicing
 
       scope :exclude_empty_invoices, lambda {
         line_items_assoc_id = ledger_item_class_info.method(:line_items).to_sym
-        line_items_refl = reflections[line_items_assoc_id]
+        line_items_refl = reflections[line_items_assoc_id] ||
+          reflections[line_items_assoc_id.to_s]
         line_items_table = line_items_refl.quoted_table_name
 
         # e.g. `ledger_items`.`id`

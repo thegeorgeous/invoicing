@@ -8,7 +8,6 @@ For development, you need up-to-date versions of the following gems (`sudo gem i
   * mysql (if you use MySQL)
   * pg (if you use PostgreSQL)
   * newgem
-  * flexmock
 
 Fork the invoicing gem on GitHub, then clone it to your machine:
 

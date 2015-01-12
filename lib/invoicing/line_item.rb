@@ -164,7 +164,7 @@ module Invoicing
       # Dynamically created named scopes
       scope :in_effect, lambda {
         ledger_assoc = line_item_class_info.method(:ledger_item).to_sym
-        ledger_refl = reflections[ledger_assoc]
+        ledger_refl = reflections[ledger_assoc] || reflections[ledger_assoc.to_s]
         ledger_table = ledger_refl.table_name # not quoted_table_name because it'll be quoted again
         status_column = ledger_refl.klass.send(:ledger_item_class_info).method(:status)
         joins(ledger_assoc).where("#{ledger_table}.#{status_column}" => ['closed', 'cleared'])
