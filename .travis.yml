@@ -10,6 +10,7 @@ gemfile:
   - gemfiles/Gemfile.rails-4.0.x
   - gemfiles/Gemfile.rails-4.1.x
   - gemfiles/Gemfile.rails-5.0.x
+  - gemfiles/Gemfile.rails-5.1.x
 
 matrix:
   exclude:
@@ -22,6 +23,10 @@ matrix:
       gemfile: gemfiles/Gemfile.rails-5.0.x
     - rvm: 2.1.10
       gemfile: gemfiles/Gemfile.rails-5.0.x
+    - rvm: 2.0.0
+      gemfile: gemfiles/Gemfile.rails-5.1.x
+    - rvm: 2.1.10
+      gemfile: gemfiles/Gemfile.rails-5.1.x
 
 script:
   - bundle exec rake --trace
