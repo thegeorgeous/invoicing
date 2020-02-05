@@ -11,6 +11,7 @@ gemspec
 # your gem to rubygems.org.
 
 gem "pry-rails"
+gem "minitest"
 
 # Issue in database cleaner for sqlite support
 # https://github.com/bmabey/database_cleaner/issues/224
