@@ -252,6 +252,8 @@ module Invoicing
       elsif attribute =~ /^(#{attr_regex})_taxed$/
         if ActiveRecord::VERSION::MAJOR == 4 && ActiveRecord::VERSION::MINOR >= 2
           @attributes.write_cast_value(attribute, value)
+        elsif ActiveRecord::VERSION::MAJOR == 5
+          @attributes.write_cast_value(attribute, value)
         else
           @attributes[attribute] = value
         end
